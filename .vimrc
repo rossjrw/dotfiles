@@ -14,22 +14,20 @@ Plugin 'tmhedberg/SimpylFold' " enables block folding
 Plugin 'vim-scripts/indentpython.vim' " automatic python indentation
 Plugin 'Valloric/YouCompleteMe' " autocomplete
 Plugin 'chriskempson/base16-vim' " theme colours
-Plugin 'scrooloose/nerdtree' " document tree
 Plugin 'kien/ctrlp.vim' " enable Ctrl+P big search boi
 Plugin 'tpope/vim-fugitive' " git integration
 Plugin 'tpope/vim-commentary' " comment line with gcc,
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " powerline
 Plugin 'cespare/vim-toml' " toml syntax highlighting
-Plugin 'python-mode/python-mode'
 Plugin 'rossjrw/vim-px-to-rem'
 Plugin 'tpope/vim-surround' " cs to activate
-Plugin 'w0rp/ale' " syntax checking
+Plugin 'vim-syntastic/syntastic'
+Plugin 'rossjrw/python-syntax'
 
 " ...
 
 call vundle#end()
 filetype plugin indent on
-let g:python_highlight_all = 1
 
 " enable split navigation with Ctrl+direction
 nnoremap <C-J> <C-W><C-J>
@@ -82,9 +80,6 @@ set encoding=utf-8
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" make nerdtree a bit thinner
-let g:NERDTreeWinSize=22
-
 " something about virtualenv???
 " py << EOF
 " import os
@@ -96,17 +91,23 @@ let g:NERDTreeWinSize=22
 " EOF
 
 " syntax highlighting
-let python_highlight_all=1
-syntax on
-let g:syntastic_python_checkers = ['python3.7']
+" let python_highlight_all=1
+" syntax on
+" let g:syntastic_python_checkers = ['python3']
 
 " enable colour scheme
+let g:python_highlight_all=1
 let base16colorspace=256
-colorscheme base16-material
-" set background=dark
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1
-" colorscheme hybrid
+colorscheme base16-tomorrow-night-eighties
+function! s:base16_customize() abort
+    call Base16hi("pythonOperator", "", "", g:base16_cterm0C, "", "", "")
+    call Base16hi("pythonClassVar", "", "", "", "", "italic", "")
+endfunction
+
+augroup on_change_colorschema
+    autocmd!
+    autocmd ColorScheme * call s:base16_customize()
+augroup END
 
 " enable line numbers
 set nu
