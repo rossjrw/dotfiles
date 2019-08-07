@@ -23,6 +23,7 @@ Plugin 'rossjrw/vim-px-to-rem'
 Plugin 'tpope/vim-surround' " cs to activate
 Plugin 'vim-syntastic/syntastic'
 Plugin 'rossjrw/python-syntax'
+Plugin 'scrooloose/NERDTree'
 
 " ...
 
@@ -98,11 +99,15 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " enable colour scheme
 let g:python_highlight_all=1
 let base16colorspace=256
-colorscheme base16-tomorrow-night-eighties
-function! s:base16_customize() abort
-    call Base16hi("pythonOperator", "", "", g:base16_cterm0C, "", "", "")
-    call Base16hi("pythonClassVar", "", "", "", "", "italic", "")
-endfunction
+set termguicolors
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
+colorscheme base16-eighties
+" function! s:base16_customize() abort
+call Base16hi("pythonOperator", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
+call Base16hi("pythonClassVar", "", "", "", "", "italic", "")
+" endfunction
 
 augroup on_change_colorschema
     autocmd!
@@ -125,6 +130,7 @@ set clipboard=unnamed
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
 python3 del powerline_setup
+set laststatus=2
 
 " set Ctrl-R in VISUAL mode to "replace all instance of this with __"
 " Escape special characters in a string for exact matching.
