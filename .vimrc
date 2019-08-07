@@ -107,12 +107,15 @@ colorscheme base16-eighties
 " function! s:base16_customize() abort
 call Base16hi("pythonOperator", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
 call Base16hi("pythonClassVar", "", "", "", "", "italic", "")
+call Base16hi("pythonStatement", "", "", "", "", "bold", "")
+call Base16hi("pythonRepeat", "", "", "", "", "bold,italic", "")
+call Base16hi("pythonFunction", g:base16_gui0D, "", g:base16_cterm0D, "", "bold", "")
 " endfunction
 
-augroup on_change_colorschema
-    autocmd!
-    autocmd ColorScheme * call s:base16_customize()
-augroup END
+" augroup on_change_colorschema
+"     autocmd!
+"     autocmd ColorScheme * call s:base16_customize()
+" augroup END
 
 " enable line numbers
 set nu
