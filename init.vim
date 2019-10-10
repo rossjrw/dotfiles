@@ -14,7 +14,10 @@ Plug 'rossjrw/vim-px-to-rem'
 Plug 'tpope/vim-surround' " cs to activate
 Plug 'vim-syntastic/syntastic'
 Plug 'rossjrw/python-syntax'
-Plug 'scrooloose/NERDTree'
+Plug 'pangloss/vim-javascript'
+Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " enable split navigation with Ctrl+direction
@@ -22,6 +25,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" clear highlights on esc
+nnoremap <esc> :noh<CR>:<esc><esc>
 
 " handle indentation for python
 au BufNewFile,BufRead *.py
@@ -77,33 +82,33 @@ call Base16hi("pythonFunction", g:base16_gui0D, "", g:base16_cterm0D, "", "bold"
 " " Based on this -
 " http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
 function! EscapeString (string)
-	let string=a:string
-	" Escape regex characters
-	let string = escape(string, '^$.*\/~[]')
-	" Escape the line endings
-	let string = substitute(string, '\n', '\\n', 'g')
-	return string
+  let string=a:string
+  " Escape regex characters
+  let string = escape(string, '^$.*\/~[]')
+  " Escape the line endings
+  let string = substitute(string, '\n', '\\n', 'g')
+  return string
 endfunction
 
 " Get the current visual block for search and replaces
 " This function passed the visual block through a string escape function
 " Based on this - https://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
 function! GetVisual() range
-	" Save the current register and clipboard
-	let reg_save = getreg('"')
-	let regtype_save = getregtype('"')
-	let cb_save = &clipboard
-	set clipboard&
-	" Put the current visual selection in the " register
-	normal! ""gvy
-	let selection = getreg('"')
-	" Put the saved registers and clipboards back
-	call setreg('"', reg_save, regtype_save)
-	let &clipboard = cb_save
-	"Escape any special characters in the selection
-	let escaped_selection = EscapeString(selection)
-	return escaped_selection
+  " Save the current register and clipboard
+  let reg_save = getreg('"')
+  let regtype_save = getregtype('"')
+  let cb_save = &clipboard
+  set clipboard&
+  " Put the current visual selection in the " register
+  normal! ""gvy
+  let selection = getreg('"')
+  " Put the saved registers and clipboards back
+  call setreg('"', reg_save, regtype_save)
+  let &clipboard = cb_save
+  "Escape any special characters in the selection
+  let escaped_selection = EscapeString(selection)
+  return escaped_selection
 endfunction
-    
+
 " Start the find and replace command across the entire file
 vmap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
