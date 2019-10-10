@@ -9,13 +9,18 @@ Plug 'vim-scripts/indentpython.vim' " automatic python indentation
 Plug 'chriskempson/base16-vim' " theme colours
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'tpope/vim-commentary' " comment line with gcc,
-Plug 'cespare/vim-toml' " toml syntax highlighting
 Plug 'rossjrw/vim-px-to-rem'
 Plug 'tpope/vim-surround' " cs to activate
-Plug 'vim-syntastic/syntastic'
+Plug 'gerw/vim-HiLinkTrace'
+
 Plug 'rossjrw/python-syntax'
 Plug 'pangloss/vim-javascript'
+Plug 'cespare/vim-toml'
+Plug 'kchmck/vim-coffee-script'
+
 Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -27,6 +32,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " clear highlights on esc
 nnoremap <esc> :noh<CR>:<esc><esc>
+" jump to ale errors
+nmap <silent> [c <Plug>(ale_previous_wrap)
+nmap <silent> ]c <Plug>(ale_next_wrap)
 
 " handle indentation for python
 au BufNewFile,BufRead *.py
@@ -52,7 +60,7 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.json,*.cofee
 
 " highlight whitespace at the end of a line
 highlight BadWhiteSpace ctermbg=red guibg=darkred
-au BufNewFile,BufRead *.py,*.pyw,*.js,*.html,*.css,*.json,*.cofee,*.md
+au BufNewFile,BufRead *.py,*.pyw,*.js,*.html,*.css,*.json,*.coffee,*.md
     \ match BadWhiteSpace /\s\+$/
 
 " enable colour scheme
@@ -112,3 +120,31 @@ endfunction
 
 " Start the find and replace command across the entire file
 vmap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
+
+" config airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_theme = 'powerlineish'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '@'
+let g:airline_symbols.maxlinenr = ''
+function! AirlineInit()
+  call airline#parts#define_raw('linenr', '%l')
+  call airline#parts#define_accent('linenr', 'bold')
+  call airline#parts#define_raw('percent', '%p')
+  call airline#parts#define_accent('percent', 'bold')
+  let g:airline_section_x = airline#section#create([])
+  let g:airline_section_y = airline#section#create(['percent','%%'])
+  let g:airline_section_z = airline#section#create(['linenr', ':%c'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
+" config ale
+let g:ale_linters['coffeescript'] = 'coffee'
+let g:ale_linters['python'] = 'yapf'
