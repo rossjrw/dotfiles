@@ -18,7 +18,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'rossjrw/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'cespare/vim-toml'
-Plug 'kchmck/vim-coffee-script'
+Plug 'rossjrw/vim-coffee-script'
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -52,7 +52,7 @@ au BufNewFile,BufRead *.py
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.html,*.css,*.json,*.cofee
+au BufNewFile,BufRead *.js,*.html,*.css,*.json,*.coffee
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -107,6 +107,8 @@ call Base16hi("coffeeGlobal", g:base16_gui09, "", g:base16_cterm09, "", "", "")
 call Base16hi("coffeeRepeat", g:base16_gui0E, "", g:base16_cterm0E, "", "bold,italic", "")
 call Base16hi("coffeeObjAssign", g:base16_gui0A, "", g:base16_cterm0A, "", "", "")
 call Base16hi("coffeeSpecialIdent", g:base16_gui05, "", g:base16_cterm05, "", "italic", "")
+call Base16hi("coffeeThis", g:base16_gui05, "", g:base16_cterm05, "", "italic", "")
+call Base16hi("coffeeSymbol", g:base16_gui0A, "", g:base16_cterm0A, "", "", "")
 " endfunction
 
 " augroup on_change_colorschema
@@ -176,8 +178,11 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 " config ale
-let g:ale_linters['coffeescript'] = 'coffee'
-let g:ale_linters['python'] = 'yapf'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'coffeescript': ['coffee'],
+\   'python': ['yapf'],
+\}
 
 " ##### Standard coc config #####
 
