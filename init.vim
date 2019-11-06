@@ -52,15 +52,22 @@ au BufNewFile,BufRead *.py
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.html,*.css,*.json,*.coffee
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
+au BufNewFile,BufRead *.js,*.coffee
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
     \ set colorcolumn=80
+au BufNewFile,BufRead *.html,*.json,*.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
 
 " highlight whitespace at the end of a line
 highlight BadWhiteSpace ctermbg=red guibg=darkred
@@ -95,6 +102,7 @@ call Base16hi("jsRepeat", g:base16_gui0E, "", g:base16_cterm0E, "", "bold,italic
 call Base16hi("jsExceptions", g:base16_gui08, "", g:base16_cterm08, "", "", "")
 call Base16hi("jsOperator", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
 call Base16hi("jsBuiltins", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+" for rossjrw/vim-coffee-script
 call Base16hi("coffeeOperator", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
 call Base16hi("coffeeConditional", g:base16_gui0E, "", g:base16_cterm0E, "", "", "")
 call Base16hi("coffeeStatement", g:base16_gui0E, "", g:base16_cterm0E, "", "bold", "")
@@ -109,6 +117,7 @@ call Base16hi("coffeeObjAssign", g:base16_gui0A, "", g:base16_cterm0A, "", "", "
 call Base16hi("coffeeSpecialIdent", g:base16_gui05, "", g:base16_cterm05, "", "italic", "")
 call Base16hi("coffeeThis", g:base16_gui05, "", g:base16_cterm05, "", "italic", "")
 call Base16hi("coffeeSymbol", g:base16_gui0A, "", g:base16_cterm0A, "", "", "")
+call Base16hi("coffeeFunction", g:base16_gui0D, "", g:base16_cterm0D, "", "bold", "")
 " endfunction
 
 " augroup on_change_colorschema
