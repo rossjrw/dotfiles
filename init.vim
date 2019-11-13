@@ -41,7 +41,7 @@ nmap <silent> ]c <Plug>(ale_next_wrap)
 nnoremap <C-P> :Files<CR>
 
 " handle indentation for python
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead *.py,*.md
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
