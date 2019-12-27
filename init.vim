@@ -1,10 +1,14 @@
 set nocompatible
 filetype off
-set nu
+set number
+set relativenumber
+set numberwidth=1
 set cursorline
 set scrolloff=8
 
 call plug#begin()
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/indentpython.vim' " automatic python indentation
 Plug 'chriskempson/base16-vim' " theme colours
 Plug 'tpope/vim-fugitive' " git integration
@@ -12,8 +16,6 @@ Plug 'tpope/vim-commentary' " comment line with gcc,
 Plug 'rossjrw/vim-px-to-rem'
 Plug 'tpope/vim-surround' " cs to activate
 Plug 'gerw/vim-HiLinkTrace'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 Plug 'rossjrw/python-syntax'
 Plug 'pangloss/vim-javascript'
@@ -33,12 +35,16 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " clear highlights on esc
-nnoremap <esc> :noh<CR>:<esc><esc>
+nnoremap <esc> :noh<CR>:<BS>
 " jump to ale errors
 nmap <silent> [c <Plug>(ale_previous_wrap)
 nmap <silent> ]c <Plug>(ale_next_wrap)
-" fuck ctrlp
-nnoremap <C-P> :Files<CR>
+" fuck ctrlp, fzf is better
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+nnoremap <C-P> :FZF<CR>
+
+" ^W\ will centre the page
+nnoremap <C-W><leader> :vnew<CR>:vertical resize -40<CR><C-W><C-L>:<BS>
 
 " handle indentation for python
 au BufNewFile,BufRead *.py,*.md
@@ -119,6 +125,9 @@ call Base16hi("coffeeThis", g:base16_gui05, "", g:base16_cterm05, "", "italic", 
 call Base16hi("coffeeSymbol", g:base16_gui0A, "", g:base16_cterm0A, "", "", "")
 call Base16hi("coffeeFunction", g:base16_gui0D, "", g:base16_cterm0D, "", "bold", "")
 " endfunction
+" struggling to get inverted cursor on windows terminal so flashy flashy will
+" do
+set guicursor=a:blinkon100
 
 " augroup on_change_colorschema
 "     autocmd!
