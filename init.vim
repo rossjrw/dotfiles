@@ -44,7 +44,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 nnoremap <C-P> :FZF<CR>
 
 " ^W\ will centre the page
-nnoremap <C-W><leader> :vnew<CR>:vertical resize -40<CR><C-W><C-L>:<BS>
+nnoremap <C-W><leader> :vnew<CR>:vertical resize -44<CR><C-W><C-L>:<BS>
 
 " handle indentation for python
 au BufNewFile,BufRead *.py,*.md
@@ -199,8 +199,19 @@ autocmd User AirlineAfterInit call AirlineInit()
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'coffeescript': ['coffee'],
-\   'python': ['yapf'],
+\   'python': ['pylint'],
 \}
+" let g:ale_python_pylint_options = '--init-hook=''import sys; sys.path.append(".")'''
+let g:ale_virtualenv_dir_names = ['.venv']
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_pylint_auto_pipenv = 1
+
+" only do highlight stuff for active window
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
 
 " ##### Standard coc config #####
 
