@@ -58,7 +58,7 @@ au BufNewFile,BufRead *.py,*.md
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.coffee
+au BufNewFile,BufRead *.js,*.coffee,*.sh
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
