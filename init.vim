@@ -47,7 +47,7 @@ nnoremap <C-P> :FZF<CR>
 nnoremap <C-W><leader> :vnew<CR>:vertical resize -44<CR><C-W><C-L>:<BS>
 
 " handle indentation for python
-au BufNewFile,BufRead *.py,*.md
+au BufNewFile,BufRead *.py,*.md,*.txt
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -58,7 +58,7 @@ au BufNewFile,BufRead *.py,*.md
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.coffee,*.sh
+au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
