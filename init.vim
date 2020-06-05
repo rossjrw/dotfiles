@@ -21,6 +21,7 @@ Plug 'rossjrw/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'cespare/vim-toml'
 Plug 'rossjrw/vim-coffee-script'
+Plug 'posva/vim-vue'
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -58,7 +59,7 @@ au BufNewFile,BufRead *.py,*.md,*.txt
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh
+au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
