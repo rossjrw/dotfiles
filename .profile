@@ -14,20 +14,20 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-PS1="\t $PS1"
-PATH="$HOME/nvim-linux64/bin:$PATH"
+export PS1="\t $PS1"
+export PATH="$HOME/nvim-linux64/bin:$PATH"
 export PIPENV_VENV_IN_PROJECT=true
 
 vmd() {
   /mnt/c/Program\ Files\ \(x86\)/University\ of\ Illinois/VMD/vmd.exe $*
 }
 
-PATH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0:$PATH"
-PATH="/mnt/c/WINDOWS:$PATH"
+export PATH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0:$PATH"
+export PATH="/mnt/c/WINDOWS:$PATH"
 
-APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
+export APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
 
-alias tree="tree -I node_modules"
+alias tree="tree -a -I 'node_modules|\.git'"
 
-EDITOR="nvim"
-VISUAL="$EDITOR"
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
