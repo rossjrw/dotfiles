@@ -23,6 +23,9 @@ Plug 'cespare/vim-toml'
 Plug 'rossjrw/vim-coffee-script'
 Plug 'posva/vim-vue'
 Plug '2072/PHP-Indenting-for-VIm'
+Plug 'StanAngeloff/php.vim'
+Plug 'jasonshell/vim-svg-indent'
+Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
