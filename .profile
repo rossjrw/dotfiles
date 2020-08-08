@@ -27,7 +27,9 @@ export PATH="/mnt/c/WINDOWS:$PATH"
 
 export APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
 
-alias tree="tree -a -I 'node_modules|\.git'"
+alias tree="tree -a -I 'node_modules|\.git|\.venv|\.pytest_cache' -h --du"
 
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
+
+export GPG_TTY=$(tty)
