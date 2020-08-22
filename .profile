@@ -2,7 +2,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+      . "$HOME/.bashrc"
     fi
 fi
 
@@ -33,3 +33,5 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 
 export GPG_TTY=$(tty)
+
+alias conflicts='$EDITOR -p `git diff --name-only | uniq`'

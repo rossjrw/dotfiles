@@ -1,0 +1,14 @@
+[user]
+	email = rossjrw@gmail.com
+	name = Ross Williams
+	signingkey = DBCA0670CCBC5A81
+[core]
+	autocrlf = false
+	eol = lf
+[credential "https://github.com"]
+	username = rossjrw
+	helper = "!f() { test $1 = get && echo password=`pass GitHub`; }; f"
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

@@ -26,6 +26,7 @@ Plug '2072/PHP-Indenting-for-VIm'
 Plug 'StanAngeloff/php.vim'
 Plug 'jasonshell/vim-svg-indent'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'cakebaker/scss-syntax.vim'
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -63,7 +64,7 @@ au BufNewFile,BufRead *.py,*.md,*.txt
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml
+au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -91,7 +92,7 @@ let g:PHP_vintage_case_default_indent = 1
 
 " highlight whitespace at the end of a line
 highlight BadWhiteSpace ctermbg=red guibg=darkred
-au BufNewFile,BufRead *.py,*.pyw,*.js,*.html,*.css,*.json,*.coffee,*.md
+au BufNewFile,BufRead *.py,*.pyw,*.js,*.html,*.css,*.json,*.coffee,*.md,*.ts
     \ match BadWhiteSpace /\s\+$/
 
 " enable colour scheme
@@ -356,3 +357,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Search for merge conflict markers
 command Conflicts :/^\(<<<<<<<\|=======\|>>>>>>>\)
+
+" Don't render html (??) (posva/vim-vue#135)
+let html_no_rendering=1
