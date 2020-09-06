@@ -9,7 +9,7 @@ set scrolloff=8
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-scripts/indentpython.vim' " automatic python indentation
+Plug 'rossjrw/indentpython.vim' " automatic python indentation
 Plug 'chriskempson/base16-vim' " theme colours
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'tpope/vim-commentary' " comment line with gcc,
@@ -33,6 +33,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " enable split navigation with Ctrl+direction
