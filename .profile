@@ -20,12 +20,10 @@ export PS1="\t $PS1"
 # keep pipenv .venv dir in the project dir
 export PIPENV_VENV_IN_PROJECT=true
 
-vmd() {
-  /mnt/c/Program\ Files\ \(x86\)/University\ of\ Illinois/VMD/vmd.exe $*
-}
-
-export PATH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0:$PATH"
-export PATH="/mnt/c/WINDOWS:$PATH"
+# I'm on WSL2 and need Windows applications sometimes
+ln -fs "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "$HOME/bin/powershell.exe" 
+ln -fs "/mnt/c/Windows/explorer.exe" "$HOME/bin/explorer.exe"
+ln -fs "/mnt/c/Windows/System32/cmd.exe" "$HOME/bin/cmd.exe"
 
 export APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
 
@@ -43,5 +41,5 @@ export GPG_TTY=$(tty)
 # open git conflicts in editor
 alias conflicts='$EDITOR -p `git diff --name-only | uniq`'
 
-# set display for x servers
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+export GITHUB_TOKEN=`pass GitHub`
+eval "$(gh completion -s bash)"

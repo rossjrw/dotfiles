@@ -1,0 +1,8 @@
+color Display Background white
+menu main on
+mol modstyle 0 0 VDW 0.3 12.0
+mol representation DynamicBonds 3.0 0.3 12.0
+mol addrep 0
+axes location off
+color change rgb 0 0.26994384 0.01462494 0.34137895
+color change rgb 14 0.97441665 0.90358991 0.13021494
