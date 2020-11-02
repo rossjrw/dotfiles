@@ -75,14 +75,15 @@ au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml
     \ set autoindent |
     \ set fileformat=unix |
     \ set colorcolumn=80
-au BufNewFile,BufRead *.html,*.json,*.css
+au BufNewFile,BufRead *.html,*.css
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
     \ set expandtab |
     \ set autoindent |
-    \ set fileformat=unix
-au BufNewFile,BufRead *.php
+    \ set fileformat=unix |
+    \ set colorcolumn=80
+au BufNewFile,BufRead *.php,*.json
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -141,6 +142,9 @@ call Base16hi("coffeeSpecialIdent", g:base16_gui05, "", g:base16_cterm05, "", "i
 call Base16hi("coffeeThis", g:base16_gui05, "", g:base16_cterm05, "", "italic", "")
 call Base16hi("coffeeSymbol", g:base16_gui0A, "", g:base16_cterm0A, "", "", "")
 call Base16hi("coffeeFunction", g:base16_gui0D, "", g:base16_cterm0D, "", "bold", "")
+" for darkholme ts
+call Base16hi("typescriptBinaryOp", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
+call Base16hi("typescriptAssign", g:base16_gui0E, "", g:base16_cterm0E, "", "", "")
 " endfunction
 " struggling to get inverted cursor on windows terminal so flashy flashy will
 " do
@@ -214,7 +218,7 @@ autocmd User AirlineAfterInit call AirlineInit()
 
 " config ale
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['standard', 'eslint'],
 \   'coffeescript': ['coffee'],
 \   'python': ['pylint'],
 \}
