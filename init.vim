@@ -6,6 +6,9 @@ set numberwidth=1
 set cursorline
 set scrolloff=8
 
+" disable language servers so that coc can have them instead
+let g:ale_disable_lsp = 1
+
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -42,6 +45,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" traverse display lines, not physical
+nnoremap <silent> k gk
+nnoremap <silent> j gj
 " clear highlights on esc
 nnoremap <esc> :noh<CR>:<BS>
 " jump to ale errors
@@ -145,6 +151,7 @@ call Base16hi("coffeeFunction", g:base16_gui0D, "", g:base16_cterm0D, "", "bold"
 " for darkholme ts
 call Base16hi("typescriptBinaryOp", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
 call Base16hi("typescriptAssign", g:base16_gui0E, "", g:base16_cterm0E, "", "", "")
+call Base16hi("typescriptObjectSpread", g:base16_gui0C, "", g:base16_cterm0C, "", "", "")
 " endfunction
 " struggling to get inverted cursor on windows terminal so flashy flashy will
 " do
@@ -218,7 +225,8 @@ autocmd User AirlineAfterInit call AirlineInit()
 
 " config ale
 let g:ale_linters = {
-\   'javascript': ['standard', 'eslint'],
+\   'javascript': ['standardx', 'eslint'],
+\   'typescript': ['standardx', 'eslint'],
 \   'coffeescript': ['coffee'],
 \   'python': ['pylint'],
 \}
@@ -362,7 +370,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Search for merge conflict markers
-command Conflicts :/^\(<<<<<<<\|=======\|>>>>>>>\)
+command! Conflicts :/^\(<<<<<<<\|=======\|>>>>>>>\)
 
 " Don't render html (??) (posva/vim-vue#135)
 let html_no_rendering=1

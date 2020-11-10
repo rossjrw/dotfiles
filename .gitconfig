@@ -13,4 +13,4 @@
 [gpg]
 	program = gpg
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'  %C("#ffcc66")%h%Creset%Creset %C("#cc99cc")·%Creset %C("#99cc99")%cr%Creset by %C("#6699cc")%aN%Creset %C("#cc99cc")·%Creset %s%C("#f99157")%d' --abbrev-commit
