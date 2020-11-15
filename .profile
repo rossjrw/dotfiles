@@ -21,9 +21,11 @@ export PS1="\t $PS1"
 export PIPENV_VENV_IN_PROJECT=true
 
 # I'm on WSL2 and need Windows applications sometimes
-ln -fs "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "$HOME/bin/powershell.exe" 
+ln -fs "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "$HOME/bin/powershell.exe"
 ln -fs "/mnt/c/Windows/explorer.exe" "$HOME/bin/explorer.exe"
 ln -fs "/mnt/c/Windows/System32/cmd.exe" "$HOME/bin/cmd.exe"
+ln -fs "/mnt/c/Program Files/Docker/Docker/resources/docker.exe" "$HOME/bin/docker.exe"
+ln -fs "/mnt/c/Program Files/Docker/Docker/resources/bin/docker-credential-desktop.exe" "$HOME/bin/docker-credential-desktop.exe"
 
 export APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
 
