@@ -13,4 +13,4 @@
 [gpg]
 	program = gpg
 [alias]
-	lg = log --all --color --graph --pretty=format:'  %C("#ffcc66")%h%Creset%Creset %C("#cc99cc")·%Creset %C("#99cc99")%cr%Creset by %C("#6699cc")%aN%Creset %C("#cc99cc")·%Creset %s%C("#f99157")%d' --abbrev-commit
+	lg = log --all --color --graph --pretty=format:'  %C("#ffcc66")%h%Creset%Creset %C("#cc99cc")·%Creset %C("#99cc99")%cr%Creset by %C("#6699cc")%aN%Creset %C("#cc99cc")·%Creset %s%C("#f99157")%d' --abbrev-commit --invert-grep --grep='Deploying to gh-pages'

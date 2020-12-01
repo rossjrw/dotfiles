@@ -19,6 +19,7 @@ Plug 'tpope/vim-commentary' " comment line with gcc,
 Plug 'rossjrw/vim-px-to-rem'
 Plug 'tpope/vim-surround' " cs to activate
 Plug 'gerw/vim-HiLinkTrace'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'rossjrw/python-syntax'
 Plug 'pangloss/vim-javascript'
@@ -72,7 +73,7 @@ au BufNewFile,BufRead *.py,*.md,*.txt
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml
+au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml,*.yaml
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -229,6 +230,7 @@ let g:ale_linters = {
 \   'typescript': ['standardx', 'eslint'],
 \   'coffeescript': ['coffee'],
 \   'python': ['pylint'],
+\   'sh': ['shellcheck'],
 \}
 " let g:ale_python_pylint_options = '--init-hook=''import sys; sys.path.append(".")'''
 let g:ale_virtualenv_dir_names = ['.venv']

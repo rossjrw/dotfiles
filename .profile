@@ -1,16 +1,16 @@
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
+if [[ -n "$BASH_VERSION" ]]; then
     # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
+    if [[ -f "$HOME/.bashrc" ]]; then
       . "$HOME/.bashrc"
     fi
 fi
 
-if [ -d "$HOME/bin" ] ; then
+if [[ -d "$HOME/bin" ]] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ] ; then
+if [[ -d "$HOME/.local/bin" ]] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
@@ -44,4 +44,4 @@ export GPG_TTY=$(tty)
 alias conflicts='$EDITOR -p `git diff --name-only | uniq`'
 
 export GITHUB_TOKEN=`pass GitHub`
-eval "$(gh completion -s bash)"
+# eval "$(gh completion -s bash)"
