@@ -1,3 +1,6 @@
+# User configuration
+source "$HOME/.profile"
+
 # Enable Powerlevel10k instant prompt.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -21,9 +24,15 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-source "$HOME/.profile"
+# Don't autocorrect because it's wrong most of the time
+unsetopt correct_all
 
+unsetopt share_history
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.poetry/bin:$PATH"
+fpath+=~/.zfunc

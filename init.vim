@@ -12,25 +12,29 @@ let g:ale_disable_lsp = 1
 call plug#begin()
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'rossjrw/indentpython.vim' " automatic python indentation
 Plug 'chriskempson/base16-vim' " theme colours
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'tpope/vim-commentary' " comment line with gcc,
 Plug 'rossjrw/vim-px-to-rem'
-Plug 'tpope/vim-surround' " cs to activate
+Plug 'tpope/vim-surround' " cs for lines, ys (e.g. ysiw) for words
 Plug 'gerw/vim-HiLinkTrace'
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'rossjrw/python-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'cespare/vim-toml'
-Plug 'rossjrw/vim-coffee-script'
-Plug 'posva/vim-vue'
-Plug '2072/PHP-Indenting-for-VIm'
-Plug 'StanAngeloff/php.vim'
-Plug 'jasonshell/vim-svg-indent'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'rossjrw/python-syntax'        " python (syntax)
+Plug 'rossjrw/indentpython.vim'     " python (indentation)
+Plug 'pangloss/vim-javascript'      " javascript
+Plug 'cespare/vim-toml'             " toml
+Plug 'rossjrw/vim-coffee-script'    " coffeescript
+Plug 'posva/vim-vue'                " vue
+Plug 'StanAngeloff/php.vim'         " php (syntax)
+Plug '2072/PHP-Indenting-for-VIm'   " php (indentation)
+Plug 'jasonshell/vim-svg-indent'    " svg
+Plug 'HerringtonDarkholme/yats.vim' " typescript
+Plug 'cakebaker/scss-syntax.vim'    " scss/sass
+Plug 'jparise/vim-graphql'          " graphql
+Plug 'Nu-SCPTheme/vim-wikidot'      " ftml
+Plug 'othree/html5.vim'
+Plug 'evanleck/vim-svelte'
 
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -73,7 +77,7 @@ au BufNewFile,BufRead *.py,*.md,*.txt
     \ set colorcolumn=80
 
 " handle indentation for other stuff
-au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml,*.yaml
+au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml,*.yaml,*.svelte
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -82,7 +86,7 @@ au BufNewFile,BufRead *.js,*.coffee,*.ts,*.sh,*.vue,*.toml,*.yml,*.yaml
     \ set autoindent |
     \ set fileformat=unix |
     \ set colorcolumn=80
-au BufNewFile,BufRead *.html,*.css
+au BufNewFile,BufRead *.html,*.css,*.json
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -90,7 +94,7 @@ au BufNewFile,BufRead *.html,*.css
     \ set autoindent |
     \ set fileformat=unix |
     \ set colorcolumn=80
-au BufNewFile,BufRead *.php,*.json
+au BufNewFile,BufRead *.php
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -98,6 +102,13 @@ au BufNewFile,BufRead *.php,*.json
     \ set autoindent |
     \ set fileformat=unix |
     \ set colorcolumn=80
+au BufNewFile,BufRead *.ftml
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set textwidth=0 |
+    \ set expandtab |
+    \ set fileformat=unix
 let g:PHP_vintage_case_default_indent = 1
 
 " highlight whitespace at the end of a line
@@ -197,7 +208,8 @@ function! GetVisual() range
   return escaped_selection
 endfunction
 
-" Start the find and replace command across the entire file
+" Start the find and replace command across the entire file, to find the
+" highlighted text when in visual mode
 vmap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
 
 " config airline
@@ -225,12 +237,14 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 " config ale
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['standardx', 'eslint'],
 \   'typescript': ['standardx', 'eslint'],
 \   'coffeescript': ['coffee'],
 \   'python': ['pylint'],
 \   'sh': ['shellcheck'],
+\   'terraform': ['tflint'],
 \}
 " let g:ale_python_pylint_options = '--init-hook=''import sys; sys.path.append(".")'''
 let g:ale_virtualenv_dir_names = ['.venv']

@@ -491,20 +491,6 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
-  # Goenv color.
-  # typeset -g POWERLEVEL9K_GOENV_FOREGROUND=0
-  # typeset -g POWERLEVEL9K_GOENV_BACKGROUND=4
-  # Hide go version if it doesn't come from one of these sources.
-  typeset -g POWERLEVEL9K_GOENV_SOURCES=(shell local global)
-  # If set to false, hide go version if it's the same as global:
-  # $(goenv version-name) == $(goenv global).
-  typeset -g POWERLEVEL9K_GOENV_PROMPT_ALWAYS_SHOW=false
-  # If set to false, hide go version if it's equal to "system".
-  typeset -g POWERLEVEL9K_GOENV_SHOW_SYSTEM=true
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_GOENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
   ##########[ nodenv: node.js version from nodenv (https://github.com/nodenv/nodenv) ]##########
   # Nodenv color.
   # typeset -g POWERLEVEL9K_NODENV_FOREGROUND=2
@@ -545,33 +531,6 @@
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
   # Custom icon.
   # typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  #######################[ go_version: go version (https://golang.org) ]########################
-  # Go version color.
-  # typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=255
-  # typeset -g POWERLEVEL9K_GO_VERSION_BACKGROUND=2
-  # Show go version only when in a go project subdirectory.
-  typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=true
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  #################[ rust_version: rustc version (https://www.rust-lang.org) ]##################
-  # Rust version color.
-  # typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=0
-  # typeset -g POWERLEVEL9K_RUST_VERSION_BACKGROUND=208
-  # Show rust version only when in a rust project subdirectory.
-  typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_RUST_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  ###############[ dotnet_version: .NET version (https://dotnet.microsoft.com) ]################
-  # .NET version color.
-  # typeset -g POWERLEVEL9K_DOTNET_VERSION_FOREGROUND=7
-  # typeset -g POWERLEVEL9K_DOTNET_VERSION_BACKGROUND=5
-  # Show .NET version only when in a .NET project subdirectory.
-  typeset -g POWERLEVEL9K_DOTNET_VERSION_PROJECT_ONLY=true
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_DOTNET_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   #####################[ php_version: php version (https://www.php.net/) ]######################
   # PHP version color.
@@ -1174,6 +1133,14 @@
   # can slow down prompt by 1-2 milliseconds, so it's better to keep it turned off unless you
   # really need it.
   typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+
+  # Create a dotted line before each prompt - thank you @romkatv for helping me with this
+  typeset -g POWERLEVEL9K_SHOW_RULER=true
+  typeset -g POWERLEVEL9K_RULER_CHAR='·'
+  typeset -g POWERLEVEL9K_RULER_FOREGROUND=240
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
+  function p10k-on-pre-prompt() { p10k display '1|2/right'=show }
+  function p10k-on-post-prompt() { p10k display '1|2/right'=hide }
 
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.

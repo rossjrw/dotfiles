@@ -3,9 +3,12 @@
 	name = Ross Williams
 	signingkey = DBCA0670CCBC5A81
 [core]
-	autocrlf = false
+	autocrlf = input
 	eol = lf
 [credential "https://github.com"]
+	username = rossjrw
+	helper = "!f() { test $1 = get && echo password=`pass GitHub`; }; f"
+[credential "https://gist.github.com"]
 	username = rossjrw
 	helper = "!f() { test $1 = get && echo password=`pass GitHub`; }; f"
 [commit]
