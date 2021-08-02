@@ -32,7 +32,7 @@ ln -fs "/mnt/c/Users/Ross/AppData/Local/Programs/Microsoft VS Code/code.exe" "$H
 export APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
 
 # don't show crap in tree
-alias tree="tree -a -I 'node_modules|\.git|\.venv|\.pytest_cache' -h --du"
+alias tree="tree -a -I 'node_modules|\.git|\.venv|\.pytest_cache|\.mypy_cache' -h --du"
 
 # nvim > vim > emacs
 export PATH="$HOME/nvim-linux64/bin:$PATH"
