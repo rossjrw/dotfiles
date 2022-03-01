@@ -42,7 +42,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " enable split navigation with Ctrl+direction

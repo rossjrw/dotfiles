@@ -1,0 +1,7 @@
+--max-columns=150
+--max-columns-preview
+
+--type-add
+vue:*.vue
+
+--smart-case 
