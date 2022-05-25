@@ -32,7 +32,7 @@ ln -fs "/mnt/c/Users/Ross/AppData/Local/Programs/Microsoft VS Code/code.exe" "$H
 export APPDATA="/mnt/c/Users/Ross/AppData/Roaming"
 
 # don't show crap in tree
-alias tree="tree -a -I 'node_modules|\.git|\.venv|\.pytest_cache|\.mypy_cache|__pycache__' -h --du"
+alias tree="tree -a -I 'node_modules|\.git|\.venv|\.pytest_cache|\.mypy_cache|__pycache__|_site' -h --du"
 
 # nvim > vim > emacs
 export PATH="$HOME/nvim-linux64/bin:$PATH"
@@ -68,3 +68,11 @@ export GDK_DPI_SCALE=1.25
 
 # set ripgrep config
 export RIPGREP_CONFIG_PATH="$HOME/.ripgrep"
+
+# quickly shutdown wsl in a way that feels natural
+alias :qa="wsl.exe --shutdown"
+
+# quick and dirty ruby setup
+# https://stackoverflow.com/a/50361633/4958427
+export GEM_HOME="$HOME/.ruby/"
+export PATH="$PATH:$HOME/.ruby/bin"

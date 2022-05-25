@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+MINECRAFT_SERVER_INSTANCE_ID="i-0edd86933b9f44623"
+
+set -e
+
+case $1 in
+"start")
+  aws ec2 start-instances --instance-ids $MINECRAFT_SERVER_INSTANCE_ID
+  ;;
+"stop")
+  aws ec2 stop-instances --instance-ids $MINECRAFT_SERVER_INSTANCE_ID
+  ;;
+*)
+  echo "Unknown command - start/stop"
+  ;;
+esac
