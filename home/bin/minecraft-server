@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
 MINECRAFT_SERVER_INSTANCE_ID="i-0edd86933b9f44623"
+MINECRAFT_SERVER_PROFILE="minecraft-server-admin"
 
-set -e
+aws configure list --profile $MINECRAFT_SERVER_PROFILE > /dev/null
+logged_in=$?
+if [ $logged_in -ne 0 ]; then
+  echo "Run 'aws configure --profile $MINECRAFT_SERVER_PROFILE'"
+  exit 1
+fi
 
 case $1 in
 "start")
-  aws ec2 start-instances --instance-ids $MINECRAFT_SERVER_INSTANCE_ID
+  aws ec2 start-instances --instance-ids $MINECRAFT_SERVER_INSTANCE_ID --profile $MINECRAFT_SERVER_PROFILE
   ;;
 "stop")
-  aws ec2 stop-instances --instance-ids $MINECRAFT_SERVER_INSTANCE_ID
+  aws ec2 stop-instances --instance-ids $MINECRAFT_SERVER_INSTANCE_ID --profile $MINECRAFT_SERVER_PROFILE
   ;;
 *)
-  echo "Unknown command - start/stop"
+  echo "Unknown command $1 - accepted: start/stop"
+  exit 1
   ;;
 esac
