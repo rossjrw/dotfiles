@@ -17,6 +17,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
+HISTSIZE=10000
+SAVEHIST=12000
+HISTFILE="$HOME/.cache/zsh/history"
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 plugins=(
   git
   gpg-agent
