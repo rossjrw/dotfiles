@@ -76,3 +76,4 @@ alias :qa="wsl.exe --shutdown"
 # https://stackoverflow.com/a/50361633/4958427
 export GEM_HOME="$HOME/.ruby/"
 export PATH="$PATH:$HOME/.ruby/bin"
+. "$HOME/.cargo/env"
