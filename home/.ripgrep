@@ -1,7 +1,11 @@
+-.
+
+# Output options
 --max-columns=150
 --max-columns-preview
 
 --type-add
 vue:*.vue
 
---smart-case 
+--type-add
+image:*.png,*.jpe?g,*.webp,*.svg
