@@ -8,4 +8,4 @@
 vue:*.vue
 
 --type-add
-image:*.png,*.jpe?g,*.webp,*.svg
+image:*.{png,jpeg,jpg,webp,svg}
