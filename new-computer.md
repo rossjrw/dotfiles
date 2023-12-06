@@ -1,5 +1,10 @@
 ## Firefox config
 
+The default Firefox settings for touchpad are crap. In about:config:
+
+- Change `apz.gtk.pangesture.delta_mode` from 0 to 2
+- Change `apz.gtk.pangesture.pixel_delta_mode_multiplier` from 40 to 15
+
 ## Fractional scaling
 
 If you're using Gnome and if it's still an experimental feature, enable it:
