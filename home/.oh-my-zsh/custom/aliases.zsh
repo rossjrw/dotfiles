@@ -13,10 +13,22 @@ function gst() {
 
   git fetch "$remote" "$default_branch" 2>/dev/null
 
+  default_branch_ahead=$(git rev-list --count "$remote_default_branch".."$default_branch" 2>/dev/null)
   default_branch_behind=$(git rev-list --count "$default_branch".."$remote_default_branch" 2>/dev/null)
-  if [ "$default_branch_behind" -gt 0 ]; then
-    echo "Local branch $default_branch is $default_branch_behind commits behind '$remote_default_branch'"
-    printf "\tuse \"git fetch %s %s:%s\" to update it\n" "$remote" "$default_branch" "$default_branch"
+
+  if [ "$default_branch_ahead" -gt 0 ] || [ "$default_branch_behind" -gt 0 ]; then
+    if [ "$default_branch_ahead" -gt 0 ] && [ "$default_branch_behind" -gt 0 ]; then
+      echo "Local branch $default_branch is $default_branch_ahead commits ahead of and $default_branch_behind commits behind '$remote_default_branch'"
+      printf "\tuse \"git checkout %s\" then one of the following:\n" "$default_branch"
+      printf "\t\tuse \"git pull --rebase\" to update local branch with remote changes\n"
+      printf "\t\tuse \"git push --force-with-lease\" to destroy remote changes\n"
+    elif [ "$default_branch_ahead" -gt 0 ]; then
+      echo "Local branch $default_branch is $default_branch_ahead commits ahead of '$remote_default_branch'"
+    fi
+    if [ "$default_branch_behind" -gt 0 ]; then
+      echo "Local branch $default_branch is $default_branch_behind commits behind '$remote_default_branch'"
+      printf "\tuse \"git rebase %s\" to update it\n" "$default_branch"
+    fi
   else
     echo "Local branch $default_branch is up to date with '$remote_default_branch'"
   fi
@@ -33,7 +45,7 @@ function gst() {
       if [ "$this_branch_ahead" -gt 0 ]; then
         echo "This branch is $this_branch_ahead commits ahead of '$default_branch'"
       fi
-      if [ "$this_branch_behind" -eq 0 ]; then
+      if [ "$this_branch_behind" -gt 0 ]; then
         echo "This branch is $this_branch_behind commits behind '$default_branch'"
         printf "\tuse \"git rebase %s\" to update it\n" "$default_branch"
       fi
