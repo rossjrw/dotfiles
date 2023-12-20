@@ -9,3 +9,6 @@ vue:*.vue
 
 --type-add
 image:*.{png,jpeg,jpg,webp,svg}
+
+--type-add
+font:*.{ttf,otf,woff,eot}
