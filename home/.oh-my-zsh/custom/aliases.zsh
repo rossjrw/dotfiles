@@ -27,7 +27,7 @@ function gst() {
     fi
     if [ "$default_branch_behind" -gt 0 ]; then
       echo "Local branch $default_branch is $default_branch_behind commits behind '$remote_default_branch'"
-      printf "\tuse \"git rebase %s\" to update it\n" "$default_branch"
+      printf "\tuse \"git fetch %s %s:%s\" to update it\n" "$remote" "$default_branch" "$default_branch"
     fi
   else
     echo "Local branch $default_branch is up to date with '$remote_default_branch'"
