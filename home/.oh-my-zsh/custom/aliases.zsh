@@ -48,6 +48,9 @@ function gst() {
       if [ "$this_branch_behind" -gt 0 ]; then
         echo "This branch is $this_branch_behind commits behind '$default_branch'"
         printf "\tuse \"git rebase %s\" to update it\n" "$default_branch"
+        if [ "$default_branch_behind" -gt 0 ]; then
+          printf "\t(but you should update %s first)" "$default_branch"
+        fi
       fi
     else
       echo "This branch is up to date with '$default_branch'"
