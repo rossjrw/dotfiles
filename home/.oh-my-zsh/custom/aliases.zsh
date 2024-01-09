@@ -61,3 +61,11 @@ function gst() {
 
   git status
 }
+
+function rgf() {
+  echo "Files with $@ in the filename:"
+  rg --files | rg $@
+  echo
+  echo "Files with $@ in the contents:"
+  rg -l $@
+}
