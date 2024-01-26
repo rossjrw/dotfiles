@@ -1,3 +1,11 @@
+## GPG keys
+
+Get the secret key file, as created by `gpg --export-secret-keys`.
+
+Import it: `gpg --import <keyfile>`
+
+Trust the key: `gpg --edit-key <ref>` (tab-complete will get it) then `trust`
+
 ## Firefox config
 
 The default Firefox settings for touchpad are crap. In about:config:
