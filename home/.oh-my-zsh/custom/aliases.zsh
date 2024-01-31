@@ -3,6 +3,8 @@ alias gcB="git checkout -B"
 
 unalias gst
 function gst() {
+  echo "Committing as $(git config user.name) <$(git config user.email)>"
+
   remote="origin"
 
   default_branch=$(git ls-remote --quiet --symref "$remote" HEAD | head -1 | awk '{print $2}')
