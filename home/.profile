@@ -50,6 +50,4 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgrep"
 # quickly shutdown wsl in a way that feels natural
 alias :qa="wsl.exe --shutdown"
 
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
-
 [ -f "$HOME/.ssh/id_rsa" ] && command -v keychain && eval $(keychain --eval "$HOME/.ssh/id_rsa")
