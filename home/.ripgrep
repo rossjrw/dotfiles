@@ -1,7 +1,7 @@
 -.
 
 # Output options
---max-columns=150
+--max-columns=1000
 --max-columns-preview
 
 --type-add

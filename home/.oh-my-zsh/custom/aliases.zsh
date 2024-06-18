@@ -85,6 +85,10 @@ function gst!() {
   gst true
 }
 
+alias gstsu='git stash show --include-untracked'
+alias gstsun='git stash show --include-untracked --name-status'
+alias gstsn='git stash show --name-status'
+
 function rgf() {
   echo "Files with $@ in the filename:"
   rg --files | rg $@

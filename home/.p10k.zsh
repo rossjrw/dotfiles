@@ -230,8 +230,11 @@
     fi
 
     # If local branch name or tag is at most 32 characters long, show it in full.
-    # Otherwise show the first 12 … the last 12.
-    (( $#where > 32 )) && where[13,-13]="…"
+    # Otherwise show the first 16 … the last 16.
+    where=${where/#feature\//f.\/}
+    where=${where/#shed\//s.\/}
+    where=${where/#hotfix\//h.\/}
+    (( $#where > 33 )) && where[20,-14]="…"
 
     res+="${clean}${where//\%/%%}"  # escape %
 
