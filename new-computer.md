@@ -10,8 +10,9 @@ Trust the key: `gpg --edit-key <ref>` (tab-complete will get it) then `trust`
 
 The default Firefox settings for touchpad are crap. In about:config:
 
-- Change `apz.gtk.pangesture.delta_mode` from 0 to 2
-- Change `apz.gtk.pangesture.pixel_delta_mode_multiplier` from 40 to 15
+- Change `apz.gtk.pangesture.delta_mode` from 0 to 2 (not super sure what this does but it feels better)
+- Change `apz.gtk.pangesture.pixel_delta_mode_multiplier` from 40 to 15 (reduce sensitivity)
+- Change `apz.fling_friction` from 0.002 to 0.008 (reduce momentum distance)
 
 ## Fractional scaling
 
