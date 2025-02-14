@@ -28,6 +28,8 @@ It might make the cursor overwhelmingly huge, in which case:
 gsettings set org.gnome.desktop.interface cursor-size 14
 ```
 
+If VSCode is subsequently blurry, open `/usr/share/applications/code.desktop` and append `--enable-ozone --ozone-platform=wayland` to the commands. [(source)](https://www.reddit.com/r/Fedora/comments/wpkws3/comment/ikhc12o/)
+
 ## Disable auto brightness
 
 If screen brightness keeps changing based on screen content (not ambient light level), `systemctl edit power-profiles-daemon.service` and add the following, then `systemctl restart power-profiles-daemon.service`:
@@ -39,3 +41,4 @@ ExecStart=/usr/libexec/power-profiles-daemon --block-action=amdgpu_panel_power
 ```
 
 Source: https://community.frame.work/t/screen-brightness-automatically-changing/8138/15
+

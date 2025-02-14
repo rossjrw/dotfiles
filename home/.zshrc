@@ -39,3 +39,5 @@ unsetopt share_history
 fpath+=~/.zfunc
 
 source <(fzf --zsh)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
