@@ -28,7 +28,11 @@ It might make the cursor overwhelmingly huge, in which case:
 gsettings set org.gnome.desktop.interface cursor-size 14
 ```
 
-If VSCode is subsequently blurry, open `/usr/share/applications/code.desktop` and append `--enable-ozone --ozone-platform=wayland` to the commands. [(source)](https://www.reddit.com/r/Fedora/comments/wpkws3/comment/ikhc12o/)
+If VSCode is subsequently blurry:
+
+- Copy `/usr/share/applications/code.desktop` to `~/.local/share/applications/` (https://askubuntu.com/q/610474/659275)
+- Edit the new file and append `--enable-ozone --ozone-platform=wayland` to the commands. (https://www.reddit.com/r/Fedora/comments/wpkws3/comment/ikhc12o/)
+- Log out, log in, launch VSCode
 
 ## Disable auto brightness
 
