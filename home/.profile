@@ -2,21 +2,21 @@
 if [[ -n "$BASH_VERSION" ]]; then
     # include .bashrc if it exists
     if [[ -f "$HOME/.bashrc" ]]; then
-      . "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
-if [[ -d "$HOME/bin" ]] ; then
+if [[ -d "$HOME/bin" ]]; then
     PATH="$HOME/bin:$PATH"
 fi
 
-if [[ -d "$HOME/.local/bin" ]] ; then
+if [[ -d "$HOME/.local/bin" ]]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
 if [ -d /opt/homebrew/bin ]; then
-	eval $(/opt/homebrew/bin/brew shellenv)
-	PATH="/opt/homebrew/bin:$PATH"
+    eval $(/opt/homebrew/bin/brew shellenv)
+    PATH="/opt/homebrew/bin:$PATH"
 fi
 
 # show the time in the prompt
@@ -34,8 +34,25 @@ export GPG_TTY=$(tty)
 # open git conflicts in editor
 alias conflicts='$EDITOR -p `git diff --name-only | uniq`'
 
-# expose my github 2FA auth to an env var (this is probably secure)
-export GITHUB_TOKEN=`pass GitHub`
+# lazy-load github token to avoid GPG prompts on terminal startup
+get_github_token() {
+    if [[ -z "$GITHUB_TOKEN" ]]; then
+        local token
+        token=$(pass GitHub)
+        export GITHUB_TOKEN="$token"
+    fi
+    echo "$GITHUB_TOKEN"
+}
+
+# alias for easy access
+alias github-token='get_github_token'
+
+# helper to preload github token (useful before doing multiple git operations)
+load_github_token() {
+    echo "Loading GitHub token..."
+    get_github_token >/dev/null
+    echo "GitHub token loaded successfully!"
+}
 
 # expose the IP of vcXsrv, for gui applications
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
