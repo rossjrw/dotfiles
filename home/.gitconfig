@@ -7,10 +7,10 @@
 	eol = lf
 [credential "https://github.com"]
 	username = rossjrw
-	helper = "!f() { test $1 = get && echo password=$(get_github_token); }; f"
+	helper = "!~/.local/bin/git-credential-github"
 [credential "https://gist.github.com"]
 	username = rossjrw
-	helper = "!f() { test $1 = get && echo password=$(get_github_token); }; f"
+	helper = "!~/.local/bin/git-credential-github"
 [commit]
 	gpgsign = true
 [gpg]
