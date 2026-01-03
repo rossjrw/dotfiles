@@ -68,3 +68,8 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgrep"
 alias :qa="wsl.exe --shutdown"
 
 [ -f "$HOME/.ssh/id_rsa" ] && command -v keychain && eval $(keychain --eval "$HOME/.ssh/id_rsa")
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
