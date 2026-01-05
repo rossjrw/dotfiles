@@ -4,6 +4,8 @@ alias gcB="git checkout -B"
 # Portable timeout (https://stackoverflow.com/a/35512328)
 function __timeout() { perl -e 'alarm shift; exec @ARGV' "$@"; }
 
+# Replace gst (git status) with one that looks up the default branch on the remote and determines how far behind/ahead of it your local branch is, to help you know if you need to rebase it
+# Lookup times out after 1 second on 'gst', does not timeout on 'gst!'
 unalias gst
 function gst() {
   local skip_timeout=${1:-false}
@@ -85,12 +87,15 @@ function gst!() {
   gst true
 }
 
-alias gstsu='git stash show --include-untracked'
-alias gstsun='git stash show --include-untracked --name-status'
-alias gstsn='git stash show --name-status'
+# Always include untracked files when viewing git stash
+# omz already has 'gstu' to include untracked files when stashing, as opposed to 'gsta'
+unalias gsts
+alias gsts='git stash show --patch --include-untracked'
+alias gstsn='git stash show --name-status --include-untracked'
 alias gs='git show'
 alias gsn='git show --name-status'
 
+# Quick search for files that contain a string in either their filename or their content
 function rgf() {
   echo "Files with $@ in the filename:"
   rg --files | rg $@
