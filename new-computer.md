@@ -14,6 +14,10 @@ The default Firefox settings for touchpad are crap. In about:config:
 - Change `apz.gtk.pangesture.pixel_delta_mode_multiplier` from 40 to 15 (reduce sensitivity)
 - Change `apz.fling_friction` from 0.002 to 0.008 (reduce momentum distance)
 
+Also
+
+- Change `browser.tabs.allowTabDetach` to false (stops it from opening a new window if you ever accidentally drag a tab 1 pixel. use ctrl N to open new windows)
+
 ## Fractional scaling
 
 If you're using Gnome and if it's still an experimental feature, enable it:
