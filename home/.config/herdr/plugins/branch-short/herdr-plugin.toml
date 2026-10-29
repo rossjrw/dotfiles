@@ -1,0 +1,22 @@
+id = "ross.branch-short"
+name = "Branch short"
+version = "0.1.0"
+min_herdr_version = "0.9.5"
+description = "Fill the $branch_short space token before git's checkout hook has run"
+platforms = ["macos"]
+
+[[startup]]
+command = ["/usr/bin/python3", "branch-short.py"]
+
+[[events]]
+on = "workspace.created"
+command = ["/usr/bin/python3", "branch-short.py"]
+
+[[events]]
+on = "worktree.created"
+command = ["/usr/bin/python3", "branch-short.py"]
+
+# Catches a space's first pane having cd'd into a different repo, which no checkout hook sees
+[[events]]
+on = "workspace.focused"
+command = ["/usr/bin/python3", "branch-short.py"]

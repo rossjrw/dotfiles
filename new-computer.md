@@ -50,3 +50,13 @@ ExecStart=/usr/libexec/power-profiles-daemon --block-action=amdgpu_panel_power
 
 Source: https://community.frame.work/t/screen-brightness-automatically-changing/8138/15
 
+## Herdr
+
+After `setup.sh` has linked `~/.config/herdr`, register the branch-short plugin (abbreviated branch names in the sidebar):
+
+```
+herdr plugin link ~/.config/herdr/plugins/branch-short
+```
+
+Its git hook (in `.gitconfig`) needs git 2.54+ for config-based hooks. On macOS that means `brew install git`; Apple's git is too old.
+

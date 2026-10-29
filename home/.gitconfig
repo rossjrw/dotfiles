@@ -21,3 +21,10 @@
 	autosquash = true
 [init]
 	defaultBranch = main
+# Abbreviated branch names in the herdr sidebar, see ~/.config/herdr/plugins/branch-short.
+# Needs git 2.54+ for config-based hooks; older git ignores this section.
+# The trailing `:` swallows the hook arguments git appends after the `&`.
+[hook "herdr-branch-short"]
+	command = ~/.config/herdr/plugins/branch-short/branch-short.py >/dev/null 2>&1 & :
+	event = post-checkout
+	event = post-rewrite

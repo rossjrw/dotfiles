@@ -81,7 +81,7 @@ function gst() {
     fi
   fi
 
-  git status
+  git status -uall
 }
 function gst!() {
   gst true
@@ -94,6 +94,7 @@ alias gsts='git stash show --patch --include-untracked'
 alias gstsn='git stash show --name-status --include-untracked'
 alias gs='git show'
 alias gsn='git show --name-status'
+alias gbsc='git branch --show-current'
 
 # Quick search for files that contain a string in either their filename or their content
 function rgf() {
@@ -103,3 +104,5 @@ function rgf() {
   echo "Files with $@ in the contents:"
   rg -l $@
 }
+
+alias opus="claude --model 'claude-opus-5-5[1m]'"

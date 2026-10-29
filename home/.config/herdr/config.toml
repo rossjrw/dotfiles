@@ -1,0 +1,37 @@
+onboarding = false
+
+# Colour worktree workspace names to match how iTerm renders the _worktree_bg tab colours in ~/.zshrc
+# SAPPHIRE, EMERALD and TOPAZ are sampled from an iTerm screenshot; RUBY and AMETHYST are estimated
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", { token = "workspace", rules = [
+    { equals = "RUBY",     fg = "#A75F5F" },
+    { equals = "EMERALD",  fg = "#5A985C" },
+    { equals = "SAPPHIRE", fg = "#6C70C0" },
+    { equals = "AMETHYST", fg = "#875FA2" },
+    { equals = "TOPAZ",    fg = "#A28E5C" },
+  ] }],
+  # $branch_short is the branch abbreviated like ~/.p10k.zsh, reported by plugins/branch-short
+  ["$branch_short", "git_status"],
+]
+
+# Show Claude's terminal title (the session name) on its own row in the agents panel,
+# with the workspace name coloured the same way as in the spaces panel above
+[ui.sidebar.agents.rows_by_agent]
+claude = [
+  ["state_icon", "machine", { token = "workspace", rules = [
+    { equals = "RUBY",     fg = "#A75F5F" },
+    { equals = "EMERALD",  fg = "#5A985C" },
+    { equals = "SAPPHIRE", fg = "#6C70C0" },
+    { equals = "AMETHYST", fg = "#875FA2" },
+    { equals = "TOPAZ",    fg = "#A28E5C" },
+  ] }, "tab"],
+  ["terminal_title_stripped"],
+]
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[ui.toast]
+delivery = "system"
