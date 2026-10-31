@@ -6,6 +6,9 @@
 
 input=$(cat)
 
+# Cache the account-wide rate limits for herdr's tab bar (backgrounded so it never delays the statusline)
+[ -x "$HOME/.config/herdr/tab-bar-usage/usage.sh" ] && (printf '%s' "$input" | "$HOME/.config/herdr/tab-bar-usage/usage.sh" write &) >/dev/null 2>&1
+
 get_model_name() { echo "$input" | jq -r '.model.display_name'; }
 get_current_dir() { echo "$input" | jq -r '.workspace.current_dir'; }
 get_cost() { echo "$input" | jq -r '.cost.total_cost_usd' | awk '{printf "%.2f", $1}'; }

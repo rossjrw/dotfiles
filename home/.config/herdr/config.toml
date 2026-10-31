@@ -29,6 +29,11 @@ claude = [
   ["terminal_title_stripped"],
 ]
 
+[ui]
+tab_bar_right = [
+  { type = "command", command = "sh -c '\"$HOME/.config/herdr/tab-bar-usage/usage.sh\" show'", interval_seconds = 30, timeout_seconds = 5 },
+]
+
 [theme]
 name = "catppuccin"
 auto_switch = false
