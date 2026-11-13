@@ -32,13 +32,35 @@ write() {
   printf '%s %s %s %s %s\n' "$1" "$2" "$3" "$4" "$(date +%s)" > "$cache.tmp.$$" && mv "$cache.tmp.$$" "$cache"
 }
 
-# bar <pct> -> "━━────"
+# steps <pct> <n> -> pct rounded to n steps
+steps() {
+  s=$(( ($1 * $2 + 50) / 100 ))
+  [ "$s" -gt "$2" ] && s=$2
+  printf '%d' "$s"
+}
+
+# bar <pct> [pace pct] -> "━╾──┬──" (under pace) / "━━┯━━──" (over): a tick where even use would be.
+# The fill moves in half cells (╾); the tick sits between cells.
 bar() {
-  filled=$(( ($1 * 6 + 50) / 100 ))
-  [ "$filled" -gt 6 ] && filled=6
+  half=$(steps "$1" 12) tick=-1
+  [ -n "$2" ] && tick=$(steps "$2" 6)
   i=0 out=""
-  while [ $i -lt 6 ]; do
-    if [ $i -lt "$filled" ]; then out="${out}━"; else out="${out}─"; fi
+  while [ $i -le 6 ]; do
+    if [ $i -eq "$tick" ]; then
+      # Each side of the tick's horizontal matches the line beside it; at the bar's ends,
+      # the one side there is.
+      lh=0 rh=0
+      [ "$half" -ge $((2 * i)) ] && [ "$half" -gt 0 ] && lh=1
+      [ "$half" -gt $((2 * i)) ] && rh=1
+      [ $i -eq 0 ] && lh=$rh
+      [ $i -eq 6 ] && rh=$lh
+      if [ $rh -eq 1 ]; then out="${out}┯"; elif [ $lh -eq 1 ]; then out="${out}┭"; else out="${out}┬"; fi
+    fi
+    if [ $i -lt 6 ]; then
+      if [ "$half" -ge $((2 * i + 2)) ]; then out="${out}━"
+      elif [ "$half" -eq $((2 * i + 1)) ]; then out="${out}╾"
+      else out="${out}─"; fi
+    fi
     i=$((i + 1))
   done
   printf '%s' "$out"
@@ -53,21 +75,24 @@ left() {
   else printf '%dm' $((rem / 60)); fi
 }
 
-# part <label> <pct|-> <reset|->
+# part <label> <window seconds> <pct|-> <reset|->
+# "5h ━─┬──── 14%/38% 3h5m": used / where even use across the window would be by now.
 part() {
-  label=$1 pct=$2 reset=$3
+  label=$1 window=$2 pct=$3 reset=$4
   [ "$pct" = "-" ] && { printf '%s ?' "$label"; return; }
   # Window already reset: usage is back to 0 until the next statusline update.
   if [ "$reset" != "-" ] && [ "$reset" -le "$now" ]; then pct=0 reset=-; fi
-  printf '%s %s %d%%' "$label" "$(bar "$pct")" "$pct"
-  [ "$reset" != "-" ] && printf ' %s' "$(left "$reset")"
+  [ "$reset" = "-" ] && { printf '%s %s %d%%' "$label" "$(bar "$pct")" "$pct"; return; }
+  pace=$(( (window - (reset - now)) * 100 / window ))
+  [ "$pace" -lt 0 ] && pace=0
+  printf '%s %s %d%%/%d%% %s' "$label" "$(bar "$pct" "$pace")" "$pct" "$pace" "$(left "$reset")"
 }
 
 show() {
   [ -r "$cache" ] || { echo "usage: waiting for a Claude statusline update"; exit 0; }
   read -r p5 r5 p7 r7 updated < "$cache"
   now=$(date +%s)
-  line="$(part 5h "$p5" "$r5") | $(part 7d "$p7" "$r7")"
+  line="$(part 5h 18000 "$p5" "$r5") | $(part 7d 604800 "$p7" "$r7")"
   # The numbers only change while a Claude session is active; say how old they are.
   age=$(( (now - updated) / 60 ))
   [ "$age" -ge 15 ] && line="$line (${age}m ago)"
