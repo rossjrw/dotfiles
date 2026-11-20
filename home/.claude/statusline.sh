@@ -74,4 +74,8 @@ fi
 
 STATUS="$STATUS ${DIM}|${RESET} ${GREEN}\$$COST${RESET} ${DIM}|${RESET} ${DIM}${DIR}${RESET}"
 
+# Branch
+BRANCH=$(git -C "$(get_current_dir)" branch --show-current 2>/dev/null)
+[ -n "$BRANCH" ] && STATUS="$STATUS ${DIM}|${RESET} ${CYAN}${BRANCH}${RESET}"
+
 echo -e "$STATUS"
