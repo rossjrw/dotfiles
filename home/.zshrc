@@ -51,11 +51,11 @@ source <(fzf --zsh)
 # Format per entry: "bg_hex tab_r tab_g tab_b"
 function _worktree_bg() {
   typeset -A gem_colors=(
-    RUBY      '#0a0000 160 0 0'
-    EMERALD   '#000a00 0 140 0'
-    SAPPHIRE  '#00000a 0 0 160'
-    AMETHYST  '#060010 90 0 150'
-    TOPAZ     '#0a0700 150 110 0'
+    RUBY      '#190000 243 0 0'
+    EMERALD   '#001a00 0 140 0'
+    SAPPHIRE  '#00001c 0 112 255'
+    AMETHYST  '#16001f 208 0 225'
+    TOPAZ     '#1a1100 155 113 0'
   )
 
   if [[ "$PWD" =~ '.*/\.worktrees/([^/]+)' ]]; then
